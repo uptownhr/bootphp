@@ -1,0 +1,211 @@
+@import url(http://fonts.googleapis.com/css?family=Allura);
+.layout{width:1030px;margin:0 auto;position:relative;padding:0 15px;-moz-box-sizing:border-box;box-sizing:border-box}
+html{font-family:"Proxima Nova","proxima-nova",sans-serif}
+body{background:#fff;color:#6a686f;font-size:16px;line-height:26px;min-width:1030px}
+a{text-decoration:none}
+h1,#intro p{font-size:43px}
+h1{font-weight:normal;color:#403a4e}
+body > article > section,#jobs:before,footer{margin:0;position:relative;width:100%;min-width:1030px}
+.section-home{padding-top:564px;}
+.section-home #intro{height:564px;background-image:url("images/backgrounds/home.jpg")}
+.section-home #intro{height:564px;background-image:url("http://www.coloft.com/uploads/1326514918")}
+.section-careers{padding-top:406px;}
+.section-careers #intro{height:406px;background-image:url("images/backgrounds/careers.jpg")}
+
+#intro{background-position:center center;background-repeat:no-repeat;background-size:cover;overflow:hidden;position:fixed;top:0;left:0;width:100%;text-align:center;}
+#intro .logo{margin-top:72px;}
+#intro .logo > *{width:80px;height:80px; color: #fff; font-size: 90px; font-family: 'Allura'; }
+#intro p{color:#fff;line-height:70px;margin:0;}
+#intro p span{background:#00f;display:inline-block;height:60px;line-height:60px;padding:0 12px}
+#intro .logo,#intro p,#intro p span{opacity:1;-moz-transition:opacity .3s ease-in-out;-o-transition:opacity .3s ease-in-out;-webkit-transition:opacity .3s ease-in-out;-ms-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}
+#intro.read .logo,#intro.read p,#intro.read p span{opacity:0}
+#future,.section-careers #jobs:before{background:#f3f3f3;box-shadow:0 2px 2px rgba(0,0,0,0.15)}
+.lt-ie9 #future,.lt-ie9 .section-careers #jobs:before{border-bottom:1px #eee solid}
+#future{padding:125px 0;z-index:1;}
+#future .layout{width:720px;margin:0 auto}
+#future h1,#future p{margin:0}
+#future h1{text-transform:uppercase;font-size:60px;line-height:53px;font-weight:bold;float:left;text-align:right;width:215px}
+#future p{margin-left:245px;width:485px}
+.lt-ie9 #future p{width:450px}
+#careers{background:#fff;padding:140px 0;overflow:hidden;}
+#careers h1{line-height:48px}
+#careers p{width:500px;margin:24px 0}
+#careers h1,#careers p,#careers .button{position:relative}
+#careers .button{width:auto}
+#family .photo{width:387px;height:243px;display:block;position:relative;overflow:visible;background:url("images/backgrounds/photo-shadow.png") bottom left no-repeat}
+#family .photo img{width:329px;height:198px;position:absolute;top:50%;left:50%;margin-top:-105px;margin-left:-164.5px}
+.section-home #family{position:absolute;top:-120px;right:0;z-index:0;}
+.section-home #family .photo{-moz-transition:all .5s ease-in-out;-o-transition:all .5s ease-in-out;-webkit-transition:all .5s ease-in-out;-ms-transition:all .5s ease-in-out;transition:all .5s ease-in-out}
+.section-home #family .photo:nth-child(1){-moz-transform:rotate(-45deg) translate(-1260px,-1200px);-o-transform:rotate(-45deg) translate(-1260px,-1200px);-webkit-transform:rotate(-45deg) translate(-1260px,-1200px);-ms-transform:rotate(-45deg) translate(-1260px,-1200px);transform:rotate(-45deg) translate(-1260px,-1200px)}
+.section-home #family .photo:nth-child(2){-moz-transform:rotate(45deg) translate(900px,-900px);-o-transform:rotate(45deg) translate(900px,-900px);-webkit-transform:rotate(45deg) translate(900px,-900px);-ms-transform:rotate(45deg) translate(900px,-900px);transform:rotate(45deg) translate(900px,-900px);-moz-transition:all .6s ease-in-out;-o-transition:all .6s ease-in-out;-webkit-transition:all .6s ease-in-out;-ms-transition:all .6s ease-in-out;transition:all .6s ease-in-out;top:-60px;left:-60px}
+.section-home #family .photo:nth-child(3){-moz-transform:translate(900px,900px) rotate(-90deg);-o-transform:translate(900px,900px) rotate(-90deg);-webkit-transform:translate(900px,900px) rotate(-90deg);-ms-transform:translate(900px,900px) rotate(-90deg);transform:translate(900px,900px) rotate(-90deg);-moz-transition:all .62s ease-in-out;-o-transition:all .62s ease-in-out;-webkit-transition:all .62s ease-in-out;-ms-transition:all .62s ease-in-out;transition:all .62s ease-in-out;top:-140px}
+.section-home #family.ready .photo:nth-child(1){-moz-transform:rotate(-5deg) translate(0,0);-o-transform:rotate(-5deg) translate(0,0);-webkit-transform:rotate(-5deg) translate(0,0);-ms-transform:rotate(-5deg) translate(0,0);transform:rotate(-5deg) translate(0,0)}
+.section-home #family.ready .photo:nth-child(2){-moz-transform:rotate(-2.5deg) translate(0,0);-o-transform:rotate(-2.5deg) translate(0,0);-webkit-transform:rotate(-2.5deg) translate(0,0);-ms-transform:rotate(-2.5deg) translate(0,0);transform:rotate(-2.5deg) translate(0,0)}
+.section-home #family.ready .photo:nth-child(3){-moz-transform:rotate(-.5deg) translate(0,0);-o-transform:rotate(-.5deg) translate(0,0);-webkit-transform:rotate(-.5deg) translate(0,0);-ms-transform:rotate(-.5deg) translate(0,0);transform:rotate(-.5deg) translate(0,0)}
+.section-careers #family{left:-30px;margin-bottom:-45px;}
+.section-careers #family .photo:nth-child(1){-moz-transform:rotate(-1.5deg) translate(0,0);-o-transform:rotate(-1.5deg) translate(0,0);-webkit-transform:rotate(-1.5deg) translate(0,0);-ms-transform:rotate(-1.5deg) translate(0,0);transform:rotate(-1.5deg) translate(0,0);z-index:1}
+.section-careers #family .photo:nth-child(2){-moz-transform:rotate(4deg) translate(0,0);-o-transform:rotate(4deg) translate(0,0);-webkit-transform:rotate(4deg) translate(0,0);-ms-transform:rotate(4deg) translate(0,0);transform:rotate(4deg) translate(0,0);top:-60px;left:10px}
+.section-careers #family .photo:nth-child(3){-moz-transform:rotate(-.5deg) translate(0,0);-o-transform:rotate(-.5deg) translate(0,0);-webkit-transform:rotate(-.5deg) translate(0,0);-ms-transform:rotate(-.5deg) translate(0,0);transform:rotate(-.5deg) translate(0,0);top:-100px;left:15px}
+#contact{line-height:62px;padding:180px 0;}
+#contact h1,#contact p{margin:0}
+#contact h1{color:#fff}
+#contact .button{position:absolute;top:50%;right:15px;margin-top:-31px;}
+#contact .button a{background-color:rgba(255,255,255,0.45)}
+#contact .button a:hover{box-shadow:0 0 13px rgba(0,0,0,0.2)}
+#contact .button a:active{background-color:rgba(255,255,255,0.3)}
+.pr #contact .button a,.vg #contact .button a,.cs #contact .button a{background-color:rgba(0,0,0,0.2)}
+.pr #contact .button a:active,.vg #contact .button a:active,.cs #contact .button a:active{background-color:rgba(0,0,0,0.3)}
+.button{display:inline-block;text-transform:uppercase;}
+.button a{color:#fff;display:block;line-height:62px;height:62px;padding:0 35px;border-radius:5px;-moz-transition:box-shadow .25s ease-in-out;-o-transition:box-shadow .25s ease-in-out;-webkit-transition:box-shadow .25s ease-in-out;-ms-transition:box-shadow .25s ease-in-out;transition:box-shadow .25s ease-in-out}
+.button a:hover{box-shadow:0 0 13px rgba(0,0,0,0.2)}
+.lt-ie8 .button{display:inline;height:62px}
+.section-careers{color:#434341;padding-bottom:96px;}
+.section-careers h1{font-weight:200px}
+.section-careers #jobs:before{content:' ';width:100%;height:57px;display:block;position:absolute;top:-57px;left:0}
+.section-careers #jobs{position:relative;background:#fff}
+.section-careers #jobs-list,.section-careers aside{margin-top:86px}
+.section-careers #jobs-list section h1,.section-careers aside article h1{font-size:30px;margin-bottom:12px}
+.section-careers #jobs-list h1:first-child,.section-careers aside h1:first-child{margin-top:0}
+.section-careers #jobs-list h1:first-child{margin-bottom:16px}
+.section-careers .layout:after{content:' ';display:block;visibility:hidden;height:0;line-height:0;clear:both}
+.section-careers aside{float:right;width:400px;}
+.section-careers aside #perks{padding-left:26px}
+.section-careers #jobs-list{min-height:1000px;width:600px;float:left;border-right:1px #eae9e8 solid;padding-right:26px;-moz-box-sizing:border-box;box-sizing:border-box;}
+.section-careers #jobs-list h1{font-size:40px}
+.section-careers #jobs-list > h1{font-weight:bold;text-transform:uppercase;font-size:60px;line-height:48px}
+.section-careers #jobs-list > section:last-child{margin-bottom:0}
+.section-careers #jobs-list > section{margin:48px 0 36px 0;}
+.section-careers #jobs-list > section > ul{list-style-type:none;padding:0;margin:0;}
+.section-careers #jobs-list > section > ul li > a{height:39px;line-height:39px;padding:0 71px 0 30px;-moz-box-sizing:border-box;box-sizing:border-box;display:block;overflow:hidden;}
+.section-careers #jobs-list > section > ul li > a .title{float:left;color:#454442}
+.section-careers #jobs-list > section > ul li > a .location{float:right;color:#a6a4a5}
+.section-careers #jobs-list > section > ul li > a:hover,.section-careers #jobs-list > section > ul li.toggled > a{background:#0082c8;background:rgba(0,130,200,0.47);}
+.section-careers #jobs-list > section > ul li > a:hover .title,.section-careers #jobs-list > section > ul li.toggled > a .title,.section-careers #jobs-list > section > ul li > a:hover .location,.section-careers #jobs-list > section > ul li.toggled > a .location{color:#fff}
+.section-careers #jobs-list > section > ul li .job{background:#fbfbfb;padding:20px 30px 30px;position:relative;overflow:hidden;margin-bottom:24px;}
+.section-careers #jobs-list > section > ul li .job > h1{margin-top:0;line-height:48px}
+.section-careers #jobs-list > section > ul li .job section{margin:36px 0}
+.section-careers #jobs-list > section > ul li .job .button{float:right;margin-bottom:0;}
+.section-careers #jobs-list > section > ul li .job .button a{height:39px;line-height:39px}
+.section-careers #jobs-list > section > ul li .job ul{list-style-type:disc}
+#contact,#careers{z-index:2}
+footer{background:#343434;color:#f3f3f3;text-align:center;-moz-box-sizing:border-box;box-sizing:border-box;padding-top:112px;padding-bottom:36px;position:relative;z-index:2;box-shadow:0 2px 2px rgba(0,0,0,0.15);}
+footer .twitter{position:absolute;width:38px;height:32px;left:50%;top:68px;margin:0 0 -19px;}
+footer .twitter a{background:url("images/logos/twitter.png") center center no-repeat;display:block;width:100%;height:100%;text-indent:-9999px;overflow:hidden}
+.section-home #location:after,.section-careers + footer:after{content:' ';display:block;position:absolute;bottom:0;left:0;width:100%;height:8px;background:-moz-repeating-linear-gradient(left, #0082c8 0px, #0082c8 119px, #fdb813 120px, #fdb813 239px, #82d2e5 240px, #82d2e5 359px, #bcbdc0 360px, #bcbdc0 479px, #ef4035 480px, #ef4035 599px, #c1d72e 600px, #c1d72e 719px);background:-o-repeating-linear-gradient(left, #0082c8 0px, #0082c8 119px, #fdb813 120px, #fdb813 239px, #82d2e5 240px, #82d2e5 359px, #bcbdc0 360px, #bcbdc0 479px, #ef4035 480px, #ef4035 599px, #c1d72e 600px, #c1d72e 719px);background:-webkit-repeating-linear-gradient(left, #0082c8 0px, #0082c8 119px, #fdb813 120px, #fdb813 239px, #82d2e5 240px, #82d2e5 359px, #bcbdc0 360px, #bcbdc0 479px, #ef4035 480px, #ef4035 599px, #c1d72e 600px, #c1d72e 719px);background:repeating-linear-gradient(left, #0082c8 0px, #0082c8 119px, #fdb813 120px, #fdb813 239px, #82d2e5 240px, #82d2e5 359px, #bcbdc0 360px, #bcbdc0 479px, #ef4035 480px, #ef4035 599px, #c1d72e 600px, #c1d72e 719px)}
+.section-home #location:after{position:fixed}
+.section-home footer{display:block}
+#location{width:100%;height:636px;min-height:636px;background:url("images/backgrounds/colomap.png") center bottom no-repeat;background-attachment:fixed;bottom:0;left:0;margin-:8px;}
+#location .widget{width:370px;height:238px;display:block;position:absolute;top:50%;left:50%;margin-top:-169px;margin-left:-185px;border:1px #666 solid;border-radius:2px;background:#fff;font-family:"Lucida Sans",sans-serif;opacity:0;-moz-transition:opacity .3s ease-in-out;-o-transition:opacity .3s ease-in-out;-webkit-transition:opacity .3s ease-in-out;-ms-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}
+#location .widget .cover,#location .widget .avatar{display:block;background-position:center center;background-size:cover;position:absolute}
+#location .widget .cover{width:370px;height:137px;background-color:#fff;top:0;left:0}
+#location .widget .cover:after{width:370px;height:93px;position:absolute;bottom:0;left:0;display:block;content:' ';background:-o-linear-gradient(bottom,rgba(0,0,0,0.6),rgba(0,0,0,0));background:-webkit-linear-gradient(bottom,rgba(0,0,0,0.6),rgba(0,0,0,0));background:-moz-linear-gradient(bottom,rgba(0,0,0,0.6),rgba(0,0,0,0));background:linear-gradient(bottom,rgba(0,0,0,0.6),rgba(0,0,0,0))}
+#location .widget .avatar{width:106px;height:106px;background-color:#fff;top:89px;left:12px;border:1px rgba(0,0,0,0.3) solid;border-radius:3px}
+#location .widget .details{color:#fff;font-size:12px;line-height:18px;position:absolute;top:89px;left:130px;width:230px;height:112px;}
+#location .widget .details .name,#location .widget .details .stats,#location .widget .details .address,#location .widget .details .phone{display:block}
+#location .widget .details .name{font-size:14px;font-weight:bold;margin-top:8px}
+#location .widget .details .address,#location .widget .details .phone{color:#7f7f7f;position:relative;padding-left:20px;line-height:20px}
+#location .widget .details .address:before,#location .widget .details .phone:before{content:' ';width:16px;height:16px;display:block;position:absolute;top:50%;margin-top:-8px;left:0;background-image:url("images/icons/contact.png");background-repeat:no-repeat}
+#location .widget .details .address:before{background-position:0 0}
+#location .widget .details .phone:before{background-position:-16px 0}
+#location .widget .details .address{margin-top:16px}
+#location .widget.ready{opacity:1}
+#location .widget:before{width:370px;height:34px;background:#f2f2f2;border-top:1px #d6d6d6 solid;display:block;position:absolute;bottom:0;left:0;content:' '}
+#location .widget:after{width:18px;height:9px;background:url("images/widgets/tail.png") center center no-repeat;position:absolute;left:50%;margin-left:-9px;bottom:-9px;content:' '}
+@media all and (min-width: 2400px){#location{background-size:contain}
+}.ios #intro{position:absolute}
+.ios #location{background-attachment:scroll;}
+.ios #location .widget{opacity:1}
+.ux #contact,
+.ux .button a,
+.ux.department .button a
+{background:#0082c8}
+.ux .button a:active,
+.ux.department .button a:active
+{background-color:#0075b4}
+.ux footer a,
+.ux #future h1,
+.ux #jobs-list > h1
+{color:#0082c8}
+.ux #intro p span
+{background:#0082c8;background:rgba(0,130,200,0.77)}
+.ux ::selection
+{background:#fdb813}
+.vg #contact,
+.vg .button a,
+.vg.department .button a
+{background:#fdb813}
+.vg .button a:active,
+.vg.department .button a:active
+{background-color:#f3ac02}
+.vg footer a,
+.vg #future h1,
+.vg #jobs-list > h1
+{color:#fdb813}
+.vg #intro p span
+{background:#fdb813;background:rgba(253,184,19,0.77)}
+.vg ::selection
+{background:#0082c8}
+.cs #contact,
+.cs .button a,
+.cs.department .button a
+{background:#82d2e5}
+.cs .button a:active,
+.cs.department .button a:active
+{background-color:#64c7df}
+.cs footer a,
+.cs #future h1,
+.cs #jobs-list > h1
+{color:#82d2e5}
+.cs #intro p span
+{background:#82d2e5;background:rgba(130,210,229,0.77)}
+.cs ::selection
+{background:#c1d72e}
+.nu #contact,
+.nu .button a,
+.nu.department .button a
+{background:#bcbdc0}
+.nu .button a:active,
+.nu.department .button a:active
+{background-color:#a8aaae}
+.nu footer a,
+.nu #future h1,
+.nu #jobs-list > h1
+{color:#bcbdc0}
+.nu #intro p span
+{background:#bcbdc0;background:rgba(188,189,192,0.77)}
+.nu ::selection
+{background:#ef4035}
+.cp #contact,
+.cp .button a,
+.cp.department .button a
+{background:#ef4035}
+.cp .button a:active,
+.cp.department .button a:active
+{background-color:#ed261a}
+.cp footer a,
+.cp #future h1,
+.cp #jobs-list > h1
+{color:#ef4035}
+.cp #intro p span
+{background:#ef4035;background:rgba(239,64,53,0.77)}
+.cp ::selection
+{background:#bcbdc0}
+.pr #contact,
+.pr .button a,
+.pr.department .button a
+{background:#c1d72e}
+.pr .button a:active,
+.pr.department .button a:active
+{background-color:#b0c526}
+.pr footer a,
+.pr #future h1,
+.pr #jobs-list > h1
+{color:#c1d72e}
+.pr #intro p span
+{background:#c1d72e;background:rgba(193,215,46,0.77)}
+.pr ::selection
+{background:#82d2e5}
+#intro p,#contact,#careers,#future,#jobs-list > h1,footer{opacity:0}
+.colored #intro p,.colored #contact,.colored #careers,.colored #future,.colored #jobs-list > h1,.colored footer{opacity:1}
+.toggler .togglable{opacity:0;-moz-transition:opacity .2s ease-in-out;-o-transition:opacity .2s ease-in-out;-webkit-transition:opacity .2s ease-in-out;-ms-transition:opacity .2s ease-in-out;transition:opacity .2s ease-in-out}
+.toggler .togglable.ready{opacity:1}

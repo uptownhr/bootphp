@@ -1,0 +1,180 @@
+<?php
+$params = array(
+	"session"	=>	session_id(),
+	"cmd"	=>	"view",
+	"order_id"	=>	$this->params('id'),
+);
+$res = Zend_Json::decode(Jien::curl("http://".SITE_URL."/api/order", "GET", $params));
+?>
+<div class="row-fluid">
+
+	<div class="span12">
+
+		<div class="widget-box">
+
+			<div class="widget-title">
+				<span class="icon">
+					<i class="icon-th-list"></i>
+				</span>
+				<h5>Invoice</h5>
+				<div class="buttons">
+					<!-- <a title="Icon Title" class="btn btn-mini" href="#"><i class="icon-shopping-cart"></i> Pay Now</a> -->
+					<!-- <a title="Icon Title" class="btn btn-mini" href="#"><i class="icon-print"></i> Print</a> -->
+				</div>
+			</div>
+			<div class="widget-content">
+                            <form action="/admin/data" method="POST" class="trig_save form-horizontal">
+				<input type="hidden" name="model" value="<?php echo $this->model; ?>">
+		  		<input type="hidden" name="id" value="<?php echo $this->params('id'); ?>">
+				<div class="invoice-content">
+					<div class="invoice-head">
+						<div class="invoice-meta">
+							Order <span class="invoice-number">#<?php echo $this->data->row('order_id'); ?></span><span class="invoice-date">Order Date: <?php echo date("m/d/y", strtotime($this->data->row('created'))); ?></span>
+						</div>
+						<h5>site.com</h5>
+						<div class="invoice-to">
+							<ul>
+								<li>
+								<span><strong>Billing</strong></span>
+								<span><?php echo $this->data->row('b_fname'); ?> <?php echo $this->data->row('b_lname'); ?></span>
+								<span><?php echo $this->data->row('b_addr1'); ?></span>
+								<span><?php echo $this->data->row('b_addr2'); ?></span>
+								<span><?php echo $this->data->row('b_city'); ?>, <?php echo $this->data->row('b_state'); ?>, <?php echo $this->data->row('b_zip'); ?></span>
+								</li>
+							</ul>
+						</div>
+						<div class="invoice-from">
+							<ul>
+								<li>
+								<span><strong>Shipping</strong></span>
+								<span><?php echo $this->data->row('s_fname'); ?> <?php echo $this->data->row('s_lname'); ?></span>
+								<span><?php echo $this->data->row('s_addr1'); ?></span>
+								<span><?php echo $this->data->row('s_addr2'); ?></span>
+								<span><?php echo $this->data->row('s_city'); ?>, <?php echo $this->data->row('s_state'); ?>, <?php echo $this->data->row('s_zip'); ?></span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div>
+						<table class="table table-bordered">
+						<thead>
+						<tr>
+							<th>
+								Title
+							</th>
+							<th>
+								 Qty
+							</th>
+							<th>
+								 Item Cost
+							</th>
+							<th>
+								 Total Cost
+							</th>
+						</tr>
+						</thead>
+						<tfoot>
+						<tr>
+							<th class="total-label" colspan="3">
+							Shipping
+							</th>
+							<th class="total-amount">
+								 $<?php echo $this->data->row('shipping_price'); ?>
+							</th>
+						</tr>
+						<tr>
+							<th class="total-label" colspan="3">
+							Tax
+							</th>
+							<th class="total-amount">
+								 $<?php echo $this->data->row('tax_price'); ?>
+							</th>
+						</tr>
+						<tr>
+							<th class="total-label" colspan="3">
+							Discount
+							</th>
+							<th class="total-amount">
+								 -$<?php echo $res['result']['order']['discount_price']; ?>
+							</th>
+						</tr>
+						<tr>
+							<th class="total-label" colspan="3">
+							Grand Total
+							</th>
+							<th class="total-amount">
+								 $<?php echo $this->data->row('total_price'); ?>
+							</th>
+						</tr>
+						</tfoot>
+						<tbody>
+
+						<?php foreach($this->cart_products AS $key=>$cart_product){ ?>
+						<tr>
+							<td>
+								 <?php echo $cart_product['product_name']; ?>
+
+								 <?php if(!empty($cart_product['product_options'])){ ?>
+								 	<div>
+								 	<?php
+			                  			$product_options = Zend_Json::decode($cart_product['product_options']);
+			                  			foreach($product_options AS $label=>$option){
+			                  				echo "<small>{$label}: {$option}</small><br>";
+			                  			}
+			                  		?>
+			                  		</div>
+			                  	  <?php } ?>
+							</td>
+							<td>
+								 <?php echo $cart_product['qty']; ?>
+							</td>
+							<td>
+								 <?php echo $cart_product['product_price']; ?>
+							</td>
+							<td>
+								 $<?php echo number_format($cart_product['product_price'] * $cart_product['qty'], 2); ?>
+							</td>
+						</tr>
+						<?php } ?>
+
+						</tbody>
+						</table>
+					</div>
+
+					<?php
+                	if(!empty($res['result']['coupons'])){
+	                		foreach($res['result']['coupons'] AS $coupon){
+	                  			$coupons_applied[] = $coupon['coupon_code'];
+	                  		}
+	                ?>
+					<p class="amount-word">
+						Coupons applied: <span><?php echo implode(", ", $coupons_applied); ?></span>
+					</p>
+					<?php } ?>
+					<!--
+					<h5>A heading</h5>
+					<p>
+						Nam pharetra sodales tincidunt. Phasellus posuere faucibus tempus. Ut dapibus ullamcorper nulla, ac pellentesque purus tincidunt nec. Ut non leo nec erat venenatis pharetra.
+					</p>
+					<p class="help-block">
+						<strong>Note:</strong> Nam pharetra sodales tincidunt. Phasellus posuere faucibus tempus. Ut dapibus ullamcorper nulla, ac pellentesque purus tincidunt nec. Ut non leo nec erat venenatis pharetra.
+					</p>-->
+				</div>
+                                <div class="form-actions">
+						Order Status: <select name="status" class="dropdown" rel="payment_term">
+                                                                <?php
+                                                                $category_types = array("");
+                                                                foreach( $this->statuses AS $row){
+                                                                        $category_types[$row] = $row;
+                                                                }
+                                                                echo $this->dropdownOptions($category_types, $this->data->row('status') );
+                                                                ?>
+                                                            </select>
+                                    <input type="submit" class="btn btn-success primary" value="Save">
+                                </div>
+                            </form>
+			</div>
+		</div>
+
+	</div>
+</div>

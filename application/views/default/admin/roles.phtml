@@ -1,0 +1,41 @@
+<div class="row-fluid">
+	<div class="span12">
+		<div class="widget-box">
+			<div class="widget-title">
+
+				 <h5>List <?php echo $this->model; ?>s</h5>
+				<div class="buttons">
+					<a title="Add a new <?php echo strtolower($this->model); ?>" class="btn btn-success btn-mini" href="/admin/<?php echo strtolower($this->model); ?>"><i class="icon-plus icon-white"></i> Add New</a>
+				</div>
+			</div>
+			<div class="widget-content nopadding">
+				<table class="table table-bordered table-striped with-check">
+					<thead>
+						<tr>
+							<th class="header"><input type="checkbox" id="title-checkbox" name="title-checkbox" /></th>
+							<th class="header" rel="role.role_id">#</th>
+				            <th class="header" rel="role.role">Role</th>
+				            <th class="header" rel="role.created">Created</th>
+				            <th class="header">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach($this->data->rows() AS $key=>$value){ ?>
+						<tr>
+							<td><input type="checkbox" /></td>
+							<td><?php echo $value['role_id']; ?></td>
+				            <td><?php echo $value['role']; ?></td>
+				            <td><?php echo date("m/d/y", strtotime($value['created'])); ?></td>
+				            <td>
+				            	<a href="/admin/<?php echo strtolower($this->model); ?>/id/<?php echo $value[$this->primary]; ?>" class="btn btn-primary btn-mini"><i class="icon-pencil icon-white"></i> View</a>
+				            	<a href="/admin/delete/?model=<?php echo $this->model; ?>&id=<?php echo $value[$this->primary];; ?>" rel="model=<?php echo $this->model; ?>|id=<?php echo $value[$this->primary]; ?>" class="btn btn-danger btn-mini trig_delete"><i class="icon-remove icon-white"></i> Delete</a>
+				            </td>
+						</tr>
+						<?php } ?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<?php echo $this->pager($this->data->pager(), 'partials/pager/pager.phtml'); ?>
+	</div>
+</div>

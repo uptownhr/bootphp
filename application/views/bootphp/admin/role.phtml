@@ -1,0 +1,26 @@
+<div class="row" id="content">
+    <form class="main-form form-horizontal col-lg-12">
+        <input type="hidden" name="model" value="<?php echo $this->model; ?>">
+        <input type="hidden" name="id" value="<?php echo $this->params('id'); ?>">
+                
+        <div class="col-lg-5 col-lg-offset-1">
+
+            <div class="form-group">
+                <label for="role" class="col-lg-4 control-label">Role<span class="req">*</span></label>
+                <div class="col-lg-8">
+                    <input name="role" type="text" class="form-control" value="<?php echo $this->data->row('role'); ?>">
+                </div>
+            </div>
+
+        </div><!--.col-lg-5-->
+    </form>
+</div><!--#content.row-->
+
+<script>
+$('.trig_password').click(function(e){
+        e.preventDefault();
+        var target = $(this).attr('rel');
+        var html = '<input type="password" class="medium" name="'+target+'" value="">';
+        $(this).parent().html(html);
+});
+</script>

@@ -1,0 +1,621 @@
+<div class="row" id="content">
+    <div id="tree-sidebar" class="col-lg-2">
+
+        <ul class="treeview">
+            <li><a href="?1">TestAcct</a>
+                <ul>
+                    <li><a href="?1.0">TestCorp</a>
+                        <ul>
+                            <li><a href="?1.0.0">barclay.test.com</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="?1.1">TestCorp</a>
+                        <ul>
+                            <li><a href="?1.1.0">barclay.test.com</a></li>
+                            <li><a href="?1.1.1">barclay.test.com</a></li>
+                            <li><a href="?1.1.2">barclay.test.com</a></li>
+                            <li><a href="?1.1.3">barclay.test.com</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="?1.2">TestCorp</a>
+                        <ul>
+                            <li><a href="?1.2.0">barclay.test.com</a></li>
+                            <li><a href="?1.2.1">barclay.test.com</a></li>
+                            <li><a href="?1.2.2">barclay.test.com</a></li>
+                            <li><a href="?1.1.3">barclay.test.com</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="?2">TestAcct</a>
+                <ul>
+                    <li><a href="?2.0">TestCorp</a>
+                        <ul>
+                            <li><a href="?2.0.0">barclay.test.com</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="?2.1">TestCorp</a>
+                        <ul>
+                            <li><a href="?2.1.0">barclay.test.com</a></li>
+                            <li><a href="?2.1.1">barclay.test.com</a></li>
+                            <li><a href="?2.1.2">barclay.test.com</a></li>
+                            <li><a href="?2.1.3">barclay.test.com</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="?2.2">TestCorp</a>
+                        <ul>
+                            <li><a href="?2.2.0">barclay.test.com</a></li>
+                            <li><a href="?2.2.1">barclay.test.com</a></li>
+                            <li><a href="?2.2.2">barclay.test.com</a></li>
+                            <li><a href="?2.2.3">barclay.test.com</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="?3">TestAcct</a>
+                <ul>
+                    <li><a href="?3.0">TestCorp</a>
+                        <ul>
+                            <li><a href="?3.0.0">barclay.test.com</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="?3.1">TestCorp</a>
+                        <ul>
+                            <li><a href="?3.1.0">barclay.test.com</a></li>
+                            <li><a href="?3.1.1">barclay.test.com</a></li>
+                            <li><a href="?3.1.2">barclay.test.com</a></li>
+                            <li><a href="?3.1.3">barclay.test.com</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="?3.2">TestCorp</a>
+                        <ul>
+                            <li><a href="?3.2.0">barclay.test.com</a></li>
+                            <li><a href="?3.2.1">barclay.test.com</a></li>
+                            <li><a href="?3.2.2">barclay.test.com</a></li>
+                            <li><a href="?3.2.3">barclay.test.com</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div><!--#sidebar-->
+
+    <div class="tree-single col-lg-10">
+        <form class="form-horizontal">
+            <div class="row">
+                <h2 class="col-lg-10">TestMid <span class="label label-default single-type">MID</span></h2>
+            </div>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab-basic" data-toggle="tab">Basic Information</a></li>
+                <li><a href="#tab-restrictions" data-toggle="tab">Restrictions</a></li>
+                <li><a href="#tab-notes" data-toggle="tab">Notes</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab-basic">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="mid_id" class="col-lg-4 control-label">ID</label>
+                                <div class="col-lg-8">
+                                    <input type="text" name="id" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="status" class="col-lg-4 control-label">Status</label>
+                                <div class="col-lg-8">
+                                    <select name="status" class="form-control">
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="status" class="col-lg-4 control-label">Bank <a href="" title="View Bank" class="ttip"><span class="icon-eye-open"></span></a></label>
+                                <div class="col-lg-8">
+                                    <select name="account" class="select2" placeholder="Select...">
+                                        <option></option>
+                                        <option value="1">Bank 1</option>
+                                        <option value="0">Bank 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="status" class="col-lg-4 control-label">Corporation <a href="" title="View Corporation" class="ttip"><span class="icon-eye-open"></span></a></label>
+                                <div class="col-lg-8">
+                                    <select name="account" class="select2" placeholder="Select...">
+                                        <option></option>
+                                        <option value="1">Corporation 1</option>
+                                        <option value="0">Corporation 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="status" class="col-lg-4 control-label">Currency</label>
+                                <div class="col-lg-8">
+                                    <select name="account" class="form-control">
+                                        <option value="usd">USD</option>
+                                        <option value="eur">EUR</option>
+                                        <option value="gbp">GBP</option>
+                                        <option value="cad">CAD</option>
+                                        <option value="eur">AUD</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="col-lg-8 col-lg-offset-4">Site Information</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-lg-4 control-label">Paysite <a href="" title="Visit Site" class="ttip"><span class="icon-external-link-sign"></span></a></label>
+                                <div class="col-lg-8">
+                                    <input type="text" name="paysite" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-lg-4 control-label">Username <a href="" title="Copy" class="ttip"><span class="icon-copy"></span></a></label>
+                                <div class="col-lg-8">
+                                    <input type="text" name="username" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-lg-4 control-label">Password <a href="" title="Copy" class="ttip"><span class="icon-copy"></span></a></label>
+                                <div class="col-lg-8">
+                                    <input type="password" name="password" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="allowed_cards" class="col-lg-4 control-label">Allowed Cards</label>
+                                <div class="col-lg-8">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="allowed_card_types[]" value=""> Visa</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="allowed_card_types[]" value=""> Visa Electron</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="allowed_card_types[]" value=""> Mastercard</label>
+                                    </div>
+                                </div>
+                            </div>                            
+                            <div class="form-group">
+                                <label for="gateway_list" class="col-lg-4 control-label">Gateway List</label>
+                                <div class="col-lg-8">
+                                    <select name="gateway_list" class="select2" multiple placeholder="Select...">
+                                        <option></option>
+                                        <option value="">Gateway 1</option>
+                                        <option value="">Gateway 2</option>
+                                        <option value="">Gateway 3</option>
+                                        <option value="">Gateway 4</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div><!--.col-lg-6-->
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <h4 class="col-lg-8 col-lg-offset-4">Bank MID Information</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for="notes" class="col-lg-4 control-label">Bank Name</label>
+                                <div class="col-lg-8">
+                                    <input type="text" name="bank_name" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="notes" class="col-lg-4 control-label">Merchant ID</label>
+                                <div class="col-lg-8">
+                                    <input type="text" name="bank_merchant_id" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="notes" class="col-lg-4 control-label">Signature Key</label>
+                                <div class="col-lg-8">
+                                    <input type="text" name="bank_signature_key" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-8 col-lg-offset-4"><button type="button" class="btn btn-default">Issue Internal MID</button></div>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="col-lg-8 col-lg-offset-4">Internal MID Information</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-lg-4 control-label">Qualifier</label>
+                                <div class="col-lg-8">
+                                    <input type="text" name="int_qualifier" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-lg-4 control-label">Descriptor 1</label>
+                                <div class="col-lg-8">
+                                    <input type="text" name="int_descriptor1" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-lg-4 control-label">Descriptor 2</label>
+                                <div class="col-lg-8">
+                                    <input type="text" name="int_descriptor2" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-lg-4 control-label">MID Value</label>
+                                <div class="col-lg-8">
+                                    <input type="text" name="int_mid_value" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-lg-4 control-label">MCC Code</label>
+                                <div class="col-lg-8">
+                                    <input type="text" name="int_mcc_code" class="form-control">
+                                </div>
+                            </div>
+                        </div><!--.col-lg-6-->
+                    </div><!--.row-->
+                </div><!--#basic.tab-pane-->
+                <div class="tab-pane" id="tab-restrictions">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <h4 class="col-lg-4 col-lg-offset-3">Processing Restrictions</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_processing_status" class="col-lg-3 control-label">Status</label>
+                                <div class="col-lg-4">
+                                    <select name="f_processing_status" class="form-control">
+                                        <option value="0">Disabled</option>
+                                        <option value="1">Enabled</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_processing_method" class="col-lg-3 control-label">Refund Restrictions</label>
+                                <div class="col-lg-4">
+                                    <select name="f_processing_method" class="form-control">
+                                        <option value="frequency"># of Transactions</option>
+                                        <option value="amount">Dollar Volume</option>
+                                        <option value="both">Both</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_processing_numtrans" class="col-lg-3 control-label"># of Transactions</label>
+                                <div class="col-lg-4">
+                                    <input type="text" name="f_processing_numtrans" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_processing_volume" class="col-lg-3 control-label">Dollar Volume</label>
+                                <div class="col-lg-4">
+                                    <input type="text" name="f_processing_volume" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_processing_resetfreq" class="col-lg-3 control-label">Reset Frequency</label>
+                                <div class="col-lg-4">
+                                    <select name="f_processing_resetfreq" class="form-control">
+                                        <option value="D">Day</option>
+                                        <option value="W">Week</option>
+                                        <option value="M">Month</option>
+                                        <option value="Y">Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="col-lg-4 col-lg-offset-3">Refund Restrictions</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_refundrest_status" class="col-lg-3 control-label">Status</label>
+                                <div class="col-lg-4">
+                                    <select name="f_refundrest_status" class="form-control">
+                                        <option value="0">Disabled</option>
+                                        <option value="1">Enabled</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_refundrest_numrefunds" class="col-lg-3 control-label"># of Allowed Refunds</label>
+                                <div class="col-lg-4">
+                                    <input type="text" name="f_refundrest_numrefunds" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_refundrest_resetfreq" class="col-lg-3 control-label">Reset Frequency</label>
+                                <div class="col-lg-4">
+                                    <select name="f_refundrest_resetfreq" class="form-control">
+                                        <option value="D">Day</option>
+                                        <option value="W">Week</option>
+                                        <option value="M">Month</option>
+                                        <option value="Y">Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="col-lg-4 col-lg-offset-3">Charges Per Card Restrictions</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_chargespercard_day_status" class="col-lg-3 control-label">Per Day Status</label>
+                                <div class="col-lg-4">
+                                    <select name="f_chargespercard_day_status" class="form-control">
+                                        <option value="0">Disabled</option>
+                                        <option value="1">Enabled</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_chargespercard_day_numcharges" class="col-lg-3 control-label"># of Allowed Charges Per Day</label>
+                                <div class="col-lg-4">
+                                    <input type="text" name="f_chargespercard_day_numcharges" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_chargespercard_month_status" class="col-lg-3 control-label">Per Month Status</label>
+                                <div class="col-lg-4">
+                                    <select name="f_chargespercard_month_status" class="form-control">
+                                        <option value="0">Disabled</option>
+                                        <option value="1">Enabled</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_chargespercard_month_numcharges" class="col-lg-3 control-label"># of Allowed Charges Per Month</label>
+                                <div class="col-lg-4">
+                                    <input type="text" name="f_chargespercard_month_numcharges" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="col-lg-4 col-lg-offset-3">Min/Max Price Point</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_minmax_status" class="col-lg-3 control-label">Status</label>
+                                <div class="col-lg-4">
+                                    <select name="f_minmax_status" class="form-control">
+                                        <option value="0">Disabled</option>
+                                        <option value="1">Enabled</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_minmax_min" class="col-lg-3 control-label">Min Price Point</label>
+                                <div class="col-lg-4">
+                                    <input type="text" name="f_minmax_min" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_minmax_max" class="col-lg-3 control-label">Max Price Point</label>
+                                <div class="col-lg-4">
+                                    <input type="text" name="f_minmax_max" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="col-lg-4 col-lg-offset-3">Price Point Whitelist</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_whitelist_status" class="col-lg-3 control-label">Status</label>
+                                <div class="col-lg-4">
+                                    <select name="f_whitelist_status" class="form-control">
+                                        <option value="0">Disabled</option>
+                                        <option value="1">Enabled</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_whitelist_pricepoint" class="col-lg-3 control-label">Approved Price Point List</label>
+                                <div class="col-lg-4">
+                                    <input type="text" name="f_whitelist_pricepoint" class="form-control">
+                                    <span class="help-block">Split list with commas (,)</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="col-lg-4 col-lg-offset-3">IP Velocity</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_ipvelocity_status" class="col-lg-3 control-label">Status</label>
+                                <div class="col-lg-4">
+                                    <select name="f_ipvelocity_status" class="form-control">
+                                        <option value="0">Disabled</option>
+                                        <option value="1">Enabled</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_ipvelocity_allowedattempts" class="col-lg-3 control-label">Allowed Attempts Per Day</label>
+                                <div class="col-lg-4">
+                                    <input type="text" name="f_ipvelocity_allowedattempts" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="col-lg-4 col-lg-offset-3">Card Velocity</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_cardvelocity_status" class="col-lg-3 control-label">Status</label>
+                                <div class="col-lg-4">
+                                    <select name="f_cardvelocity_status" class="form-control">
+                                        <option value="0">Disabled</option>
+                                        <option value="1">Enabled</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_cardvelocity_allowedattempts" class="col-lg-3 control-label">Allowed Attempts Per Day</label>
+                                <div class="col-lg-4">
+                                    <input type="text" name="f_ipvelocity_allowedattempts" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="col-lg-4 col-lg-offset-3">BIN Overuse</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_binoveruse_status" class="col-lg-3 control-label">Status</label>
+                                <div class="col-lg-4">
+                                    <select name="f_binoveruse_status" class="form-control">
+                                        <option value="0">Disabled</option>
+                                        <option value="1">Enabled</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_binoveruse_allowedcharges" class="col-lg-3 control-label">Allowed Charges Per Day</label>
+                                <div class="col-lg-4">
+                                    <input type="text" name="f_binoveruse_allowedcharges" class="form-control">
+                                </div>
+                            </div>
+                        </div><!--.col-lg-6-->
+                    </div><!--.row-->
+                </div><!--#restrictions.tab-pane-->
+                <div class="tab-pane" id="tab-notes">
+                    <table class="table table-striped table-bordered datatable with-check notes">
+                        <thead>
+                            <tr class="advanced-search">
+                                <th class="col-ignore"></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th class="col-ignore col-remove">&nbsp;</th>
+                            </tr>
+                            <tr>
+                                <th class="col-checkbox"><input type="checkbox"></th>
+                                <th class="col-note">Note</th>
+                                <th>Created</th>
+                                <th>Modified</th>
+                                <th class="col-actions">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>
+                                    <div class="cell-note" contenteditable="false">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </div>
+                                </td>
+                                <td>2013-05-20 5:35p<br>
+                                    <em>by admin</em></td>
+                                <td>2013-05-20 5:35p<br>
+                                    <em>by admin</em></td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-action btn-edit ttip" title="Edit"><span class="icon-pencil"></span></button>
+                                    <button type="button" class="btn btn-danger btn-action btn-delete ttip" title="Delete"><span class="icon-trash"></span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>
+                                    <div class="cell-note" contenteditable="false">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </div>
+                                </td>
+                                <td>2013-05-20 5:35p<br>
+                                    <em>by admin</em></td>
+                                <td>2013-05-20 5:35p<br>
+                                    <em>by admin</em></td>
+                                <td class="col-actions">
+                                    <button type="button" class="btn btn-primary btn-action btn-edit ttip" title="Edit"><span class="icon-pencil"></span></button>
+                                    <button type="button" class="btn btn-danger btn-action btn-delete ttip" title="Delete"><span class="icon-trash"></span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>
+                                    <div class="cell-note" contenteditable="false">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </div>
+                                </td>
+                                <td>2013-05-20 5:35p<br>
+                                    <em>by admin</em></td>
+                                <td>2013-05-20 5:35p<br>
+                                    <em>by admin</em></td>
+                                <td class="col-actions">
+                                    <button type="button" class="btn btn-primary btn-action btn-edit ttip" title="Edit"><span class="icon-pencil"></span></button>
+                                    <button type="button" class="btn btn-danger btn-action btn-delete ttip" title="Delete"><span class="icon-trash"></span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>
+                                    <div class="cell-note" contenteditable="false">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </div>
+                                </td>
+                                <td>2013-05-20 5:35p<br>
+                                    <em>by admin</em></td>
+                                <td>2013-05-20 5:35p<br>
+                                    <em>by admin</em></td>
+                                <td class="col-actions">
+                                    <button type="button" class="btn btn-primary btn-action btn-edit ttip" title="Edit"><span class="icon-pencil"></span></button>
+                                    <button type="button" class="btn btn-danger btn-action btn-delete ttip" title="Delete"><span class="icon-trash"></span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>
+                                    <div class="cell-note" contenteditable="false">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </div>
+                                </td>
+                                <td>2013-05-20 5:35p<br>
+                                    <em>by admin</em></td>
+                                <td>2013-05-20 5:35p<br>
+                                    <em>by admin</em></td>
+                                <td class="col-actions">
+                                    <button type="button" class="btn btn-primary btn-action btn-edit ttip" title="Edit"><span class="icon-pencil"></span></button>
+                                    <button type="button" class="btn btn-danger btn-action btn-delete ttip" title="Delete"><span class="icon-trash"></span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>
+                                    <div class="cell-note" contenteditable="false">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </div>
+                                </td>
+                                <td>2013-05-20 5:35p<br>
+                                    <em>by admin</em></td>
+                                <td>2013-05-20 5:35p<br>
+                                    <em>by admin</em></td>
+                                <td class="col-actions">
+                                    <button type="button" class="btn btn-primary btn-action btn-edit ttip" title="Edit"><span class="icon-pencil"></span></button>
+                                    <button type="button" class="btn btn-danger btn-action btn-delete ttip" title="Delete"><span class="icon-trash"></span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>
+                                    <div class="cell-note" contenteditable="false">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </div>
+                                </td>
+                                <td>2013-05-20 5:35p<br>
+                                    <em>by admin</em></td>
+                                <td>2013-05-20 5:35p<br>
+                                    <em>by admin</em></td>
+                                <td class="col-actions">
+                                    <button type="button" class="btn btn-primary btn-action btn-edit ttip" title="Edit"><span class="icon-pencil"></span></button>
+                                    <button type="button" class="btn btn-danger btn-action btn-delete ttip" title="Delete"><span class="icon-trash"></span></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h3 style="margin-top:1em">Add New Note</h3>
+                        </div><!--.col-lg-12-->
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <textarea name="new_note" id="new-note" rows="6" class="input-note form-control" placeholder="Your note text..."></textarea><br>
+                            <button type="button" class="btn btn-primary">Add Note</button>
+                        </div><!--.col-lg-12-->
+                    </div>
+                </div><!--#notes.tab-pane-->
+            </div><!--.tab-content-->
+        </form>
+    </div><!--.tree-single-->
+</div><!--.row-->
+<script>
+
+var notesTable = $('.table.notes').dataTable({
+                    "aoColumnDefs": [
+                        { "bSearchable": false, "bSortable": false, "aTargets": ['col-actions', 'col-checkbox', 'col-upload', 'col-ignore'] },
+                        { "sClass": "col-actions", "aTargets": [-1] },
+                        { "sClass": "col-checkbox", "aTargets": [0] }
+                    ]
+                });
+</script>

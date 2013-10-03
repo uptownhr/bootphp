@@ -1,0 +1,383 @@
+<?php
+    $data = $this->data;
+
+    /*
+     * $data[0] is new
+     * $data[1] is original
+     */
+?>
+<style>
+    code.diff:after{
+        content: "Primary URL";
+        position: absolute;
+        top: 5px;
+        left: 25px;
+        font-weight: bold;
+        color: #96B8FF;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    code.diff-alt:after{
+        content: "Alternate URL";
+        position: absolute;
+        top: 5px;
+        left: 25px;
+        font-weight: bold;
+        color: #96B8FF;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+</style>
+<form action="/admin/data" method="POST" class="trig_save form-horizontal site-details">
+
+    <div class="row" id="content-wide">
+
+        <h4>Match Rate: 
+        <?php if($data[0]['match_rate'] == ''){ ?>
+        N/A
+        <?php }else{ ?>
+        <?php echo $data[0]['match_rate']; ?>%
+        <?php } ?></h4>
+
+        <?php if($data[0]['iframe']){?>
+            <h4 class="text-danger">iFrame usage was detected!</h4>
+        <?php } ?>
+    
+        <?php if(!empty($data[0])){ ?>
+        
+        <?php if($data[0]['site_status'] == 'active'){ ?>
+        <div>
+            <p>This site is in <strong class="text-success">good standing</strong>, above the <?php echo MATCH_RATE; ?>% match rate threshold. :)</p>
+            <p>If this is false and the site is deemed inactive, please mark as inactive below.</p>
+            <a href="/admin/site-status/?site_id=<?php echo $data[0]['site_id']; ?>&site_status=inactive" class="btn btn-default">Mark as Inactive</a>
+            <!--
+            <a href="/admin/site-status/?site_id=<?php echo $data[0]['site_id']; ?>&site_status=reset" class="btn btn-default">Revert to Original</a>
+            -->
+        </div>
+        <?php }else if($data[0]['site_status'] == 'down' || $data[0]['site_status'] == 'changed' ){ ?>
+        <div>
+            <p>This site is BELOW the threshold of <?php echo MATCH_RATE; ?>% match rate. Please review this site carefully!</p>
+            <p>If this was a false alarm or have been resolved by the merchant, please click here to mark as resolved.</p>
+            <a href="/admin/site-status/?site_id=<?php echo $data[0]['site_id']; ?>&site_status=active" class="btn btn-info">Mark as resolved</a>
+            <a href="/admin/site-status/?site_id=<?php echo $data[0]['site_id']; ?>&site_status=reset" class="btn btn-danger">Redo original screenshot</a>
+            <a href="/admin/site-status/?site_id=<?php echo $data[0]['site_id']; ?>&site_status=inactive" class="btn btn-default">Mark as inactive</a>
+        </div>
+        <?php }else if($data[0]['site_status'] == "new"){ ?>
+        <div>
+            <p>This site is new, it requires additional scan to compare against the original.</p>
+            <p><a href="<?php echo $data[0]['url']; ?>" target="_blank" class="">Open site in new window</a></p>
+            <p>If you wish to re-scan, click the button below.</p>
+            <a href="/admin/site-status/?site_id=<?php echo $data[0]['site_id']; ?>&site_status=reset" class="btn btn-danger">Redo original screenshot</a>
+            <a href="/admin/site-status/?site_id=<?php echo $data[0]['site_id']; ?>&site_status=inactive" class="btn btn-default">Mark as inactive</a>
+        </div>
+        <?php }else{ ?>
+        <div>
+            <p>This site is INACTIVE</p>
+            <p><a href="<?php echo $data[0]['url']; ?>" target="_blank" class="">Open site in new window</a></p>
+            <p>If you wish to mark this site as active again, click the button below.</p>
+            <a href="/admin/site-status/?site_id=<?php echo $data[0]['site_id']; ?>&site_status=active" class="btn btn-info">Mark as active</a>
+            <a href="/admin/site-status/?site_id=<?php echo $data[0]['site_id']; ?>&site_status=reset" class="btn btn-danger">Redo original screenshot</a>
+            <a href="/admin/site-status/?site_id=<?php echo $data[0]['site_id']; ?>&site_status=inactive" class="btn btn-default">Mark as inactive</a>
+        </div>
+        <?php } ?>
+
+        <?php } ?>
+
+        <ul class="nav nav-tabs" id="form-tabs">
+            <li class="active"><a href="#screens" data-toggle="tab">Screenshots</a></li>
+            <li><a href="#diff" data-toggle="tab">What changed</a></li>
+            <li><a href="#details" data-toggle="tab">Details</a></li>
+            <li><a href="#history" data-toggle="tab">History</a></li>
+        </ul>
+        <div class="tab-content">
+
+            <div class="tab-pane active" id="screens">
+
+                <div class="col-lg-6 text-center">
+                    <h4>Original</h4>
+                    <?php if(count($data) == 1){ ?>
+                        <?php if($data[0]['screen'] != ""){ ?>
+                            <a href="<?php echo $data[0]['screen']; ?>" target="_blank"><img src="/admin/resize/?width=500&img_path=<?php echo $data[0]['screen']; ?>" width="500" class="img-rounded"></a>
+                        <?php } else { ?>
+                            <div class="no-screenshot large img-thumbnail">Screenshot not available</div>
+                        <?php } ?>
+                    <?php } else {?>
+                        <?php if($data[1]['screen'] != ""){ ?>
+                        <a href="<?php echo $data[1]['screen']; ?>" target="_blank"><img src="/admin/resize/?width=500&img_path=<?php echo $data[1]['screen']; ?>" width="500" class="img-rounded"></a>
+                        <?php } else { ?>
+                        <div class="no-screenshot large img-thumbnail">Screenshot not available</div>
+                        <?php } ?>
+                    <?php } ?>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <h4>Current</h4>
+                    <?php if(count($data) > 1){ ?>
+                        <?php if($data[0]['screen'] != ""){ ?>
+                        <a href="<?php echo $data[0]['screen']; ?>" target="_blank"><img src="/admin/resize/?width=500&img_path=<?php echo $data[0]['screen']; ?>" width="500" class="img-rounded"></a>
+                        <?php } else { ?>
+                        <div class="no-screenshot large img-thumbnail">Screenshot not available</div>
+                        <?php } ?>
+                    <?php } else { ?>
+                        <div class="no-screenshot large img-thumbnail">Screenshot not available</div>
+                    <?php } ?>
+                </div>
+            </div>
+
+            <div class="row tab-pane" id="diff">
+                <div class="col-lg-12">
+                    <pre>
+                        <code class="diff"><?php echo $data[0]['diff']; ?></code>
+                    </pre>
+                </div>
+                <?php if(!empty($data[0]['diff_alt'])){?>
+                <div class="col-lg-12">
+                    <pre>
+                        <code class="diff-alt"><?php echo $data[0]['diff_alt']; ?></code>
+                    </pre>
+                </div>
+                <?php } ?>
+            </div>
+
+            <div class="row tab-pane" id="details">
+                <div class="col-lg-6">
+                    <input type="hidden" name="model" value="Site">
+                    <input type="hidden" name="id" value="<?php echo $this->params('id'); ?>">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Site Status</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="site_status" value="<?php echo $data[0]["site_status"] ? $data[0]["site_status"] : ""; ?>" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">URL</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="url" value="<?php echo $data[0]["url"] ? $data[0]["url"] : ""; ?>" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">ALT URL</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="alt_url" value="<?php echo $data[0]["alt_url"] ? $data[0]["alt_url"] : ""; ?>" type="text">
+                        </div>
+                    </div>
+                    <?php if(count($data) == 1){ ?>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Orig Code</label>
+                            <div class="col-lg-8">
+                                <textarea rows="20" class="form-control" readonly><?php echo $data[0]["code"] ? htmlentities($data[0]["code"]) : ""; ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Orig Code (ALT URL)</label>
+                            <div class="col-lg-8">
+                                <textarea rows="20" class="form-control" readonly><?php echo $data[0]["iframe_code"] ? htmlentities($data[0]["iframe_code"]) : ""; ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Orig Screen</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" readonly value="<?php echo $data[0]["screen"] ? $data[0]["screen"] : ""; ?>">
+                            </div>
+                        </div>
+                    <?php }else{ ?>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Orig Code</label>
+                            <div class="col-lg-8">
+                                <textarea rows="20" class="form-control" readonly><?php echo $data[1]["code"] ? htmlentities($data[1]["code"]) : ""; ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Orig Code (ALT URL)</label>
+                            <div class="col-lg-8">
+                                <textarea rows="20" class="form-control" readonly><?php echo $data[1]["iframe_code"] ? htmlentities($data[1]["iframe_code"]) : ""; ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Orig Screen</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" readonly value="<?php echo $data[1]["screen"] ? $data[1]["screen"] : ""; ?>">
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Changed</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="changed" value="<?php echo $data[0]["changed"] ? $data[0]["changed"] : ""; ?>" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Resolved</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="resolved" value="<?php echo $data[0]["resolved"] ? $data[0]["resolved"] : ""; ?>" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Ignore iFrame Detection</label>
+                        <div class="col-lg-8">
+                            <select class="form-control" name="iframe_ignore">
+                                <option value="0"<?php echo $data[0]['iframe_ignore'] == 0 ? ' selected' : '';?>>no</option>
+                                <option value="1"<?php echo $data[0]['iframe_ignore'] == 1 ? ' selected' : '';?>>yes</option>
+                            </select>
+                        </div>
+                    </div>
+                </div><!--.col-lg-6-->
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Match Rate</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="match_rate" value="<?php echo $data[0]["match_rate"] ? $data[0]["match_rate"] : ""; ?>" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Match Rate (ALT URL)</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="match_rate_url" value="<?php echo $data[0]["match_rate_alt"] ? $data[0]["match_rate_alt"] : ""; ?>" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Find</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="find" value="<?php echo $data[0]["find"] ? $data[0]["find"] : ""; ?>" type="text">
+                        </div>
+                    </div>
+                    <?php if(count($data) > 1){ ?>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">New Code</label>
+                            <div class="col-lg-8">
+                                <textarea rows="20" class="form-control" name="new_code" readonly><?php echo $data[0]["code"] ? htmlentities($data[0]["code"]) : ""; ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">New Code (ALT URL)</label>
+                            <div class="col-lg-8">
+                                <textarea rows="20" class="form-control" name="new_code" readonly><?php echo $data[0]["iframe_code"] ? htmlentities($data[0]["iframe_code"]) : ""; ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">New Screen</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" readonly value="<?php echo $data[0]["screen"] ? $data[0]["screen"] : ""; ?>">
+                            </div>
+                        </div>
+                    <?php } else { ?>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">New Code</label>
+                            <div class="col-lg-8">
+                                <textarea rows="20" class="form-control" name="new_code" readonly></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">New Code (ALT URL)</label>
+                            <div class="col-lg-8">
+                                <textarea rows="20" class="form-control" name="new_code" readonly></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">New Screen</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" readonly value="">
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Downed</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="downed" value="<?php echo $data[0]["downed"] ? $data[0]["downed"] : ""; ?>" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Checked</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="checked" value="<?php echo $data[0]["checked"] ? $data[0]["checked"] : ""; ?>" type="text">
+                        </div>
+                    </div>
+                </div><!--.col-lg-6-->
+            </div><!--.row-->
+            <div class="row tab-pane" id="history">
+                <div class="col-lg-3">
+                    <h4>History</h4>
+                    <div class="list-group history">
+                        <?php foreach($this->history as $history){?>
+                            <a href="#" class="list-group-item history" data-leaf='{"sitedata_id" : "<?php echo $history['sitedata_id'];?>", "site_id" : "<?php echo $this->params('id'); ?>"}'>
+                                <strong><?php echo date("n/j/y h:ia", strtotime($history['created'])); ?></strong>
+                                <?php if($history['sitedata_id'] == $data[0]['current_source']){ ?>
+                                    <span class="label label-info">original</span>
+                                <?php } else if($history['sitedata_id'] == $data[0]['new_source']){?>
+                                    <span class="label label-success">new</span>
+                                    <button type="button" class="btn btn-warning btn-xs pull-right set-original" style="display:none;" data-leaf='{"sitedata_id" : "<?php echo $history['sitedata_id'];?>", "site_id" : "<?php echo $this->params('id'); ?>"}'>set original</button>
+                                <?php }else { ?>
+                                    <button type="button" class="btn btn-warning btn-xs pull-right set-original" style="display:none;" data-leaf='{"sitedata_id" : "<?php echo $history['sitedata_id'];?>", "site_id" : "<?php echo $this->params('id'); ?>"}'>set original</button>
+                                <?php } ?>
+                            </a>
+                        <?php } ?>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h5 class="history-title"></h5><br>
+                            <a class="history-image-link" href="#" target="_blank"><img class="history-image" src="" width="100%" class="img-rounded"></a>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">Source Code</label>
+                                <div class="col-lg-8">
+                                    <textarea rows="20" class="form-control source-code" readonly></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    $(document).ready(function(){
+        $('#form-tabs a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+
+        $('a.list-group-item.history').on('mouseenter',function(){
+            $(this).find('button.set-original').show();
+        })
+
+        $('a.list-group-item.history').on('mouseleave',function(){
+            $(this).find('button.set-original').hide();
+        })
+
+        $('a.list-group-item.history').on('click', 'button.set-original',function(e){
+            e.stopPropagation();
+            $.post('/api/set-original', $(this).data('leaf'), function(res){
+                if(res.status.code == 200){
+                    location.reload();
+                }else if(res.status.code == 400){
+                    console.log(res);
+                    alert('error trying to save');
+                }
+            });
+        });
+
+        $('.list-group.history').on('click', 'a.list-group-item.history', function(e){
+            e.preventDefault();
+            $('.list-group-item.history').removeClass('active');
+            $(this).addClass('active');
+            $.post('/api/get-history', $(this).data('leaf'), function(res){
+                if(res.status.code == 200){
+                    var time = new Date(res.result.created);
+                    $('.history-title').text(time.toString());
+                    $('.history-image-link').attr("href", res.result.screen);
+                    $('.history-image').attr("src", "/admin/resize/?width=500&img_path="+res.result.screen);
+                    $('textarea.form-control.source-code').text(res.result.code);
+                }else{
+                    console.log(res);
+                    alert('hmm... yea... contact your admin');
+                }
+            })
+        });
+
+    })
+
+</script>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <title><?php if ($this->title!='') { echo $this->title . ' - ProcCrm'; } ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="/themes/bootphp/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="/themes/admin/css/jquery-ui/jquery-ui-1.10.0.custom.css">
+    <link rel="stylesheet" href="/themes/admin/css/bootstrap.css">
+    <link rel="stylesheet" href="/themes/admin/css/bootstrap-glyphicons.css">
+    <link rel="stylesheet" href="/themes/admin/css/bootstrap-fontawesome.css">
+    <link rel="stylesheet" href="/themes/admin/css/datatables.css">
+    <link rel="stylesheet" href="/themes/admin/css/jquery.treeview.css" >
+    <link rel="stylesheet" href="/js/plugins/select2/select2.css">
+    <link rel="stylesheet" href="/themes/admin/css/TableTools.css">
+    <link rel="stylesheet" href="/themes/admin/css/jquery.timepicker.css">
+    <link rel="stylesheet" href="/themes/admin/css/admin.css">
+
+    <script src="/themes/admin/js/jquery.min.js"></script>
+    <script src="/themes/admin/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <!-- begin treeview and required libraries -->
+    <script src="/themes/admin/js/jquery.cookie.js"></script>
+    <script src="/themes/admin/js/jquery.treeview.js"></script>
+
+    <!-- various admin tools -->
+    <script src="/js/ckeditor/ckeditor.js"></script><!-- can be removed/replaced with another script? -->
+    <script src="/js/ckeditor/adapters/jquery.js"></script><!-- can be removed/replaced with another script? -->
+    <script src="/js/jien.js"></script><!-- need to explore -->
+    <script src="/js/plugins/select2/select2.js"></script>
+    <script src="/themes/admin/js/admin.php"></script><!-- need to explore -->
+    <!-- being bootstrap stuff -->
+    <script src="/themes/admin/js/bootstrap.js"></script>
+    <script src="/themes/admin/js/jquery.timepicker.min.js"></script>
+    <!-- begin data tables -->
+    <script src="/themes/admin/js/jquery.dataTables.js"></script>
+    <script src="/themes/admin/js/datatables-bootstrap.js"></script>
+    <script src="/themes/admin/js/datatables-sorting.js"></script>
+    <script src="/themes/admin/js/ZeroClipboard.js"></script>
+    <script src="/themes/admin/js/TableTools.js"></script>
+    <!--<script src="/themes/admin/js/FixedHeader.min.js"></script>-->
+    <!-- begin Chart.js and supporting libraries -->
+    <script src="/themes/admin/js/Chart.js"></script>
+    <script src="/themes/admin/js/effects.js"></script>
+    <!--[if lte IE 8]>
+        <script src="themes/admin/js/excanvas.js"></script>
+    <![endif]-->
+    
+    <script src="/themes/admin/js/jquery.bootstrap-growl.min.js"></script>
+    
+    <!-- begin custom JS -->
+    <script src="/themes/admin/js/main.js"></script><!-- keep at the end, consider merge with admin.php -->
+
+</head>
+
+<body class="<?php foreach($this->bodyclass as $bodyclass) { echo $bodyclass.' '; } ?>">
+
+<div id="wrap">
+    <div id="menu" class="navbar navbar-fixed-top">
+        <div class="container">
+            <a class="navbar-brand col-lg-2" href="/">ProcCRM <small><small><span class="label label-warning">Beta</span></small></small></a>
+            <ul class="nav navbar-nav">
+                <li<?php if(in_array('dashboard',$this->bodyclass)) { echo ' class="active"'; } ?>>
+                    <a href="/"><span class="icon-dashboard"></span> Dashboard</a>
+                </li>
+                <!--
+                <li class="dropdown <?php if (array_intersect(array('manage', 'tree'),$this->bodyclass)){ echo ' active'; } ?>">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="icon-list"></span>
+                        Manage
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/admin/accounts">Accounts</a></li>
+                        <li><a href="/admin/corporations">Corporations</a></li>
+                        <li><a href="/admin/mids">MIDs</a></li>
+                        <li><a href="/admin/banks">Banks</a></li>
+                        <li><a href="/admin/agents">Agents</a></li>
+                    </ul>
+                </li>
+                <li<?php if (in_array('reports',$this->bodyclass)){ echo ' class="active"'; } ?>><a href="/admin/reports"><span class="icon-file-text"></span> Reports</a></li>
+                -->
+                <li<?php if (in_array('sites',$this->bodyclass)){ echo ' class="active"'; } ?>><a href="/admin/sites/site_status/changed"><span class="icon-eye-open"></span> Site Monitor</a></li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="icon-user"></span>
+                        <?php echo $_SESSION['user']['username']; ?>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/admin/user/id/<?php echo $_SESSION['user']['user_id']; ?>"><span class="icon-cog"></span> My Settings</a></li>
+                        <li><a href="/admin/users"><span class="icon-user"></span> Users</a></li>
+                        <li><a href="/admin/configure-scaffolder"><span class="icon-wrench"></span> Scaffolder</a></li>
+                        <li class="divider"></li>
+                        <li class="trig_logout"><a href=""><span class="icon-off"></span> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--.container-->
+    </div><!--#menu.navbar-->
+
+    <div id="main" class="container">
+        <?php if ($this->title!='') { ?>
+        <div id="title-bar" class="page-header row">
+            <div class="col-lg-6">
+                <h1 class="page-title"><?php echo $this->title; ?></h1>
+                <?php if (in_array('site', $this->bodyclass)) { ?>
+                <h5>Viewing site: 
+                <span class="balance-btc">
+                    <span class="abbr"><a href="<?php echo $this->data[0]['url']; ?>" target="_blank"><?php echo $this->data[0]['url']; ?></a></span>
+                </span>
+                <?php } ?>
+            </h5>
+            </div>
+            <div id="header-btns">
+                <div class="inner">
+                    <?php if (in_array('accounts', $this->bodyclass)) { ?>
+                        <a href="" class="btn btn-default"><span class="icon-plus"></span> New Account</a>
+                    <?php } ?>
+                    <?php if (in_array('corporations', $this->bodyclass)) { ?>
+                        <a href="" class="btn btn-default"><span class="icon-plus"></span> New Corporation</a>
+                    <?php } ?>
+                    <?php if (in_array('mids', $this->bodyclass)) { ?>
+                        <a href="" class="btn btn-default"><span class="icon-plus"></span> New MID</a>
+                    <?php } ?>
+                    <?php if (in_array('banks', $this->bodyclass)) { ?>
+                        <a href="" class="btn btn-default"><span class="icon-plus"></span> New Bank</a>
+                    <?php } ?>
+                    <?php if (in_array('agents', $this->bodyclass)) { ?>
+                        <a href="" class="btn btn-default"><span class="icon-plus"></span> New Agent</a>
+                    <?php } ?>
+                    <?php if (in_array('agents-tree', $this->bodyclass)) { ?>
+                        <button type="submit" class="btn btn-default"><span class="icon-save"></span> Update</button>
+                        <button type="reset" class="btn btn-default"><span class="icon-undo"></span> Revert</button>
+                        <button type="reset" class="btn btn-default"><span class="icon-trash"></span> Delete</button>                                              
+                    <?php } ?>
+                    <?php if (in_array('site', $this->bodyclass)) { ?>
+                        <a href="" class="btn btn-primary">Save</a>
+                    <?php } ?>
+                    <?php if (in_array('tree', $this->bodyclass)) { ?>
+                        <button type="submit" class="btn btn-default"><span class="icon-save"></span> Update</button>
+                        <button type="reset" class="btn btn-default"><span class="icon-undo"></span> Revert</button>
+                        <button type="reset" class="btn btn-default"><span class="icon-trash"></span> Delete</button>  
+                    <?php } ?>
+                    <?php if (in_array('users', $this->bodyclass)) { ?>
+                        <a href="#" class="btn btn-default" href="/admin/<?php echo strtolower($this->model); ?>"><span class="icon-plus"></span> New User</a>
+                    <?php } ?>
+                    <?php if (in_array('user', $this->bodyclass)) { ?>
+                        <button type="submit" class="btn btn-default"><span class="icon-save"></span> Update</button>
+                        <button type="reset" class="btn btn-default"><span class="icon-undo"></span> Revert</button>
+                        <button type="reset" class="btn btn-default"><span class="icon-trash"></span> Delete</button>  
+                    <?php } ?>
+                    <?php if (array_intersect(array('manage', 'tree'), $this->bodyclass) && !array_intersect(array('banks', 'agents'), $this->bodyclass)) {  ?>
+                    <?php  } ?>
+                </div><!--.inner-->
+            </div><!--#header-btns.col-lg-4-->
+        </div>
+        <?php } ?>
+
+        <?php echo $this->layout()->content; ?>
+
+    </div><!--#main-->
+
+</div><!--#wrap-->
+
+<div id="footer">
+    <div class="container">
+        <p class="text-muted credit"><small>&copy; 2013 ProcCRM. All rights reserved.</small></p>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $('.site-detail-save-btn').on('click', function(e){
+            e.preventDefault();
+            $('form.site-details').submit();
+        })
+    });
+</script>
+
+</body>
+</html>

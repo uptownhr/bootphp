@@ -1,0 +1,22 @@
+<?php
+    $sites_changed = Jien::model("Site")->filter(array("site_status"=>"changed"))->get()->count();
+?>
+<div class="row" id="content">
+    <div class="col-lg-4">
+        <div class="panel alert-panel">
+            <div class="panel-heading"><a href="#">Site Monitor</a></div>
+            <?php $sites_changed = 1; if($sites_changed > 0){ ?>
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <span class="glyphicon glyphicon-warning-sign"></span> <?php echo $sites_changed; ?> merchant's sites have changed and requires review!</code><br>
+                    <a href="/admin/sites/site_status/changed" class="btn btn-warning btn-small">Review</a>
+                </div>
+            <?php }else { ?>
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <span class="glyphicon glyphicon-ok"></span> All sites passed
+                </div>
+            <?php } ?>
+        </div><!--.panel-->
+    </div>
+</div><!--#content.row-->

@@ -1,0 +1,72 @@
+<div class="row-fluid">
+	<div class="span12">
+		<div class="widget-box">
+			<div class="widget-title">
+				<span class="icon">
+					<i class="icon-align-justify"></i>
+				</span>
+				<h5>ProductImg form</h5>
+			</div>
+
+			<div class="widget-content nopadding">
+				<form action="/admin/data" method="POST" class="trig_save form-horizontal">
+				<input type="hidden" name="model" value="ProductImg">
+		  		<input type="hidden" name="id" value="<?php echo $this->params('id'); ?>">
+
+		  			<div class="control-group">
+								<label class="control-label">Product Id</label>
+								<div class="controls">
+									<input class="large" name="product_id" value="<?php echo $this->data->row("product_id") ? $this->data->row("product_id") : ""; ?>" type="text">
+								</div>
+							</div>
+<div class="control-group">
+								<label class="control-label">Image Url</label>
+								<div class="controls">
+									<input class="large" name="image_url" value="<?php echo $this->data->row("image_url") ? $this->data->row("image_url") : ""; ?>" type="text">
+								</div>
+							</div>
+<div class="control-group">
+								<label class="control-label">Sort Rank</label>
+								<div class="controls">
+									<input class="large" name="sort_rank" value="<?php echo $this->data->row("sort_rank") ? $this->data->row("sort_rank") : ""; ?>" type="text">
+								</div>
+							</div>
+
+
+					<div class="form-actions">
+						<input type="submit" class="btn btn-success primary" value="Save changes">&nbsp;<button type="reset" class="btn back">Cancel</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+
+
+$(document).ready(function(){
+
+	$('select[name=type]').change(function(){
+
+		if($(this).val() == "Add"){
+
+			$('#type_new_box').show();
+			$('select[name=type]').attr('name', 'type_old');
+			$('#type_new').attr('name', 'type');
+
+		}else{
+
+			$('#type_new_box').hide();
+			$('select[name=type]').attr('name', 'type');
+			$('#type_new').attr('name', 'type_old');
+
+			$.getJSON("/api/categories", {type: $(this).val()}, function(res){
+				$('select[name=parent_id]').html(res.result.html);
+				console.log(res);
+			});
+		}
+	});
+});
+</script>

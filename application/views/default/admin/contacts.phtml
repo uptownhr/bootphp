@@ -1,0 +1,41 @@
+<div class="row-fluid">
+	<div class="span12">
+		<div class="widget-box">
+			<div class="widget-title">
+
+				 <h5>List Contact</h5>
+				<div class="buttons">
+					<a title="Add a new contact" class="btn btn-success btn-mini" href="/admin/contact"><i class="icon-plus icon-white"></i> Add New</a>
+				</div>
+			</div>
+			<div class="widget-content nopadding">
+				<table class="table table-bordered table-striped with-check">
+					<thead>
+						<tr>
+							<th class="header"><input type="checkbox" id="title-checkbox" name="title-checkbox" /></th>
+							<th class="header" rel="contact.contact_id">#</th>
+							<th class='header' rel='contact.name'>Name</th><th class='header' rel='contact.email'>Email</th><th class='header' rel='contact.subject'>Subject</th><th class='header' rel='contact.message'>Message</th>
+				            <th class="header" rel="contact.created">Created</th>
+				            <th class="header">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach($this->data->rows() AS $key=>$value){ ?>
+						<tr>
+							<td><input type="checkbox" /></td>
+							<td><?php echo $value['contact_id']; ?></td>
+							<td><?php echo $value['name']; ?></td><td><?php echo $value['email']; ?></td><td><?php echo $value['subject']; ?></td><td><?php echo $value['message']; ?></td>
+				            <td><?php echo date("m/d/y", strtotime($value['created'])); ?></td>
+				            <td>
+				            	<a href="/admin/contact/id/<?php echo $value[$this->primary]; ?>" class="btn btn-primary btn-mini"><i class="icon-pencil icon-white"></i> View</a>
+				            	<a href="/admin/delete/?model=Contact&id=<?php echo $value[$this->primary];; ?>" rel="model=Contact|id=<?php echo $value[$this->primary]; ?>" class="btn btn-danger btn-mini trig_delete"><i class="icon-remove icon-white"></i> Delete</a>
+				            </td>
+						</tr>
+						<?php } ?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<?php echo $this->pager($this->data->pager(), 'partials/pager/pager.phtml'); ?>
+	</div>
+</div>

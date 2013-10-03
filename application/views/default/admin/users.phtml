@@ -1,0 +1,58 @@
+<div class="row" id="content">
+    <div class="col-lg-12">
+        <div class="clearfix"></div>
+        <div class="widget-content nopadding">
+            <table class="table table-bordered table-striped datatable with-check">
+                <thead>
+                    <tr>
+                        <th class="col-checkbox"><input type="checkbox" id="title-checkbox" name="title-checkbox" /></th>
+                        <th rel="u.user_id">#</th>
+                        <th rel="u.username">Username</th>
+                        <th rel="u.email">Email</th>
+                        <th rel="u.role_id">Role</th>
+                        <th rel="u.created">Joined</th>
+                        <th class="col-actions">&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($this->data->rows() AS $key=>$value){ ?>
+                    <tr>
+                        <td>
+                            <div class="checker" id="uniform-undefined"><span class="checked"><input type="checkbox" ></span></div>
+                        </td>
+                        <td ><?php echo $value['user_id']; ?></td>
+                        <td>
+                            <?php
+                                switch($value['provider']){
+                                    case "facebook":
+                                        echo "<a href='http://facebook.com/{$value['username']}' target='_blank'><img src='/images/icons/facebook.png' width='15'></a>";
+                                    break;
+
+                                    case "twitter":
+                                        echo "<a href='http://twitter.com/{$value['username']}' target='_blank'><img src='/images/icons/twitter.png' width='15'></a>";
+                                    break;
+                                }
+                            ?>
+                            <?php echo $value['username']; ?>
+                        </td>
+                        <td><?php echo $value['email']; ?></td>
+                        <td><?php echo $value['role']; ?></td>
+                        <td><?php echo date("Y-m-d", strtotime($value['created'])); ?></td>
+                        <td class="col-actions">
+                            <a href="/admin/<?php echo strtolower($this->model); ?>/id/<?php echo $value[$this->primary]; ?>" class="btn btn-primary btn-action"><span class="icon-eye-open"></span></a>
+                            <a href="/admin/delete/?model=<?php echo $this->model; ?>&id=<?php echo $value[$this->primary];; ?>" rel="model=<?php echo $this->model; ?>|id=<?php echo $value[$this->primary]; ?>" class="btn btn-danger btn-action trig_delete"><span class="icon-trash"></span></a>
+                        </td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div><!--#content.row-->
+<script>
+var usersTable = $('.datatable').dataTable({
+                    "aoColumnDefs": [
+                        { "bSearchable": false, "bSortable": false, "aTargets": ['col-actions', 'col-checkbox', 'col-upload', 'col-ignore'] } /* Disabled sorting */
+                    ]
+                });
+</script>

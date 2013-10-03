@@ -1,0 +1,214 @@
+<script src="https://api.filepicker.io/v1/filepicker.js"></script>
+<script type="text/javascript">
+filepicker.setKey('<?php echo FILEPICKER_KEY; ?>');
+</script>
+
+<div class="row-fluid">
+	<div class="span12">
+		<div class="widget-box">
+			<div class="widget-title">
+				<span class="icon">
+					<i class="icon-align-justify"></i>
+				</span>
+				<h5>Product form</h5>
+			</div>
+
+			<div class="widget-content nopadding">
+				<form action="/admin/data" method="POST" class="trig_save form-horizontal">
+				<input type="hidden" name="model" value="Product">
+		  		<input type="hidden" name="id" value="<?php echo $this->params('id'); ?>">
+
+		  			<div class="control-group">
+
+							<label class="control-label">Category</label>
+								<div class="controls">
+									<select name='category_id'>
+										<?php echo $this->CategoryDropdown('Product', $this->params('category_id', $this->data->row('category_id'))); ?>
+									</select>
+								</div>
+							</div>
+<div class="control-group">
+							<label class="control-label">Status</label>
+								<div class="controls">
+									<select name='status'>
+										<?php echo $this->dropdownOptions(array(
+											"pending"	=>	"Pending",
+											"published"	=>	"Published",
+										), $this->data->row('status'), 'published'); ?>
+									</select>
+								</div>
+							</div>
+<div class="control-group">
+							<label class="control-label">Product Name</label>
+								<div class="controls">
+									<input class="large" name="product_name" value="<?php echo $this->data->row("product_name") ? $this->data->row("product_name") : ""; ?>" type="text">
+								</div>
+							</div>
+<div class="control-group">
+							<label class="control-label">Short Description</label>
+								<div class="controls">
+									<input class="large" name="product_short_description" value="<?php echo $this->data->row("product_short_description") ? $this->data->row("product_short_description") : ""; ?>" type="text">
+								</div>
+							</div>
+<div class="control-group">
+							<label class="control-label">Long Description</label>
+								<div class="controls">
+									<textarea rows="10" name="product_description"><?php echo $this->data->row("product_description") ? $this->data->row("product_description") : ""; ?></textarea>
+								</div>
+							</div>
+<div class="control-group">
+							<label class="control-label">Product Price</label>
+								<div class="controls">
+									<input class="large" name="product_price" value="<?php echo $this->data->row("product_price") ? $this->data->row("product_price") : ""; ?>" type="text">
+								</div>
+							</div>
+<div class="control-group">
+							<label class="control-label">Payment Plan</label>
+								<div class="controls">
+									<input class="large" name="payment_plan" value="<?php echo $this->data->row("payment_plan") ? $this->data->row("payment_plan") : ""; ?>" type="text">
+								</div>
+							</div>
+
+							<label class="control-label">Cover Image</label>
+							<div class="controls">
+								<?php echo $this->FilePicker("image_url", $this->data->row('image_url')); ?>
+							</div>
+
+							<label class="control-label">Additional Images</label>
+							<div class="controls">
+								<div class="image_urls">
+									<?php
+
+									$image_urls = $this->data->row('image_urls');
+									if($image_urls != ''){
+										$image_urls = Zend_Json::decode($image_urls);
+										foreach($image_urls AS $key=>$value){
+									?>
+									<img class='filepicker_multiple' id='image_urls_src_<?php echo $key; ?>' src='<?php echo $value; ?>/convert?w=100&h=100&fit=scale' style='cursor: pointer;'>
+									<input type='hidden' value="<?php echo $value; ?>" id='image_urls_<?php echo $key; ?>' name='image_urls[<?php echo $key; ?>]' class='image_url'>
+									<?php }
+									}?>
+
+								</div>
+								<div style="margin-top: 5px;"><button class="btn btn-mini trig_image_urls_add" type="button"><i class="icon-plus"></i></button></div>
+							</div>
+
+
+							<label class="control-label">Product Options</label>
+							<div class="controls product_options">
+
+								<?php
+								$product_options = $this->data->row('product_options');
+								if(!empty($product_options)){
+									$x_options = Zend_Json::decode($product_options);
+									$c = 0;
+									foreach($x_options AS $label=>$values){
+										$c++;
+								?>
+								<div class="product_option" rel="<?php echo $label; ?>">
+									<input type="text" name="product_options_labels[<?php echo $c; ?>]" class='product_options_label' style="width: 100px;" placeholder="example: Size" value="<?php echo $label; ?>">
+									<input type="text" name="product_options_values[<?php echo $c; ?>]" class='product_options_value' style="width: 200px;" placeholder="example: S,M,L" value="<?php echo implode(", ", $values); ?>">
+									<button class="btn btn-mini trig_product_option_delete" type="button"><i class="icon-trash"></i></button>
+								</div>
+								<?php
+									}
+								}
+								?>
+
+							</div>
+							<div class="controls" style="margin-top: -15px;">
+								<button class="btn btn-mini trig_product_option_add" type="button"><i class="icon-plus"></i></button>
+							</div>
+
+							<div class="form-actions">
+								<input type="submit" class="btn btn-success primary" value="Save changes">&nbsp;<button type="reset" class="btn back">Cancel</button>
+							</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<script>
+
+
+$(document).ready(function(){
+
+	$('select[name=type]').change(function(){
+
+		if($(this).val() == "Add"){
+
+			$('#type_new_box').show();
+			$('select[name=type]').attr('name', 'type_old');
+			$('#type_new').attr('name', 'type');
+
+		}else{
+
+			$('#type_new_box').hide();
+			$('select[name=type]').attr('name', 'type');
+			$('#type_new').attr('name', 'type_old');
+
+			$.getJSON("/api/categories", {type: $(this).val()}, function(res){
+				$('select[name=parent_id]').html(res.result.html);
+			});
+		}
+	});
+
+	$('.trig_product_option_add').click(function(e){
+		e.preventDefault();
+		var html = '';
+		var c = $('.product_options_label').length + 10; // 10 to prevent id conflict
+		html += "<div class='product_option'>";
+		html +=	"	<input type='text' name='product_options_labels["+c+"]' class='product_options_label' style='width: 100px;' placeholder='example: Size' value=''>";
+		html += "	<input type='text' name='product_options_values["+c+"]' class='product_options_value' style='width: 200px;' placeholder='example: S,M,L' value=''>";
+		html += "	<button class='btn btn-mini trig_product_option_delete' type='button'><i class='icon-trash'></i></button>";
+		html += "</div>";
+
+		$('.product_options').append(html);
+	});
+
+	$('.trig_product_option_delete').live('click', function(e){
+		e.preventDefault();
+		if( $('.product_option').length > 1){
+			$(this).parent().remove();
+		}
+	});
+
+	$('.filepicker').live('click', function(e){
+		e.preventDefault();
+		var that = this;
+		filepicker.pick(function(FPFile){
+		  $(that).attr('src', FPFile.url+'/convert?w=100&h=100&fit=scale');
+		  $(that).parent().find('input[name=image_url]').val(FPFile.url);
+		});
+	});
+
+	$('.filepicker_multiple').live('click', function(e){
+		e.preventDefault();
+		var that = this;
+		filepicker.pick(function(FPFile){
+		  $(that).attr('src', FPFile.url+'/convert?w=100&h=100&fit=scale');
+		  $(that).parent().find('input[name=image_url]').val(FPFile.url);
+		});
+	});
+
+	$('.trig_image_urls_add').click(function(e){
+		e.preventDefault();
+		var c = $('.image_url').length + 1;
+		var html = "<img class='filepicker_multiple' id='image_urls_src_"+c+"' src='http://cdn4.iconfinder.com/data/icons/simplicio/48x48/file_add.png' style='cursor: pointer;'>&nbsp;";
+		html += "<input type='hidden' id='image_urls_"+c+"' name='image_urls["+c+"]' class='image_url'>";
+		$('.image_urls').append(html);
+
+		filepicker.pick(function(FPFile){
+		  $('#image_urls_src_'+c).attr('src', FPFile.url+'/convert?w=100&h=100&fit=scale');
+		  $('#image_urls_'+c).val(FPFile.url);
+		});
+
+	});
+
+});
+</script>

@@ -1,0 +1,103 @@
+<div class="row" id="content">
+    <div id="sidebar" class="col-lg-3">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title">Categories</h3></div>
+            <div class="panel-body">
+                <div class="category-list-select">
+                <?php
+                    $categories = Jien::model("Category")->where("type='Post'")->get()->rows();
+                    foreach($categories as $category){
+                        //print_r($category);
+                        
+                    }
+                    // echo '<div class="checkbox"><label><input type="checkbox"> '.$category['category'].'</label></div>';
+                    $category_id = $this->params('category_id');
+                    $categories = Jien::model("Category")->where("category.type = 'Post'")->orderBy("category.path ASC")->get()->rows();
+                    $html = '';
+                    foreach($categories AS $record){
+                        //print_r($record);
+                        $c = substr_count($record['path'], ',');
+                        $x = str_repeat('<span class="child-arrow">&rarr;</span>', $c);
+                        $sel = '';
+                        if ($c > 1)
+                            $level = ' level-'.$c;
+                        else
+                            $level = ' parent';
+                        if($category_id == $record['category_id']){
+                            $sel = ' selected';
+                        }
+                        $html .= '<div class="checkbox'. $level . $sel .'" name="category_id" value="'. $record['category_id'] .'"><label><input type="checkbox" value="'.$record['category_id'].'">'.$x.$record['category'].'</label></div>';
+                    }
+                    echo $html;
+                ?>
+                </div>
+            </div>
+        </div>
+    </div><!--#sidebar-->
+	<div class="col-lg-9">
+        <form class="trig_save form-horizontal" action="/admin/data" method="POST">
+            <input type="hidden" name="model" value="<?php echo $this->model; ?>">
+		  	<input type="hidden" name="id" value="<?php echo $this->params('id'); ?>">
+            <input type="hidden" name="user_id" value="<?php echo $this->data->row('user_id', $this->user['user_id']); ?>">
+            <div class="form-group">
+                <label for="subject" class="col-lg-2 control-label">Title</label>
+                <div class="col-lg-10">
+                    <input type="text" name="subject" class="form-control" value="<?php echo $this->data->row('subject'); ?>">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="username" class="col-lg-4 control-label">Username</label>
+                        <div class="col-lg-8">
+                            <input type="text" name="username" class="form-control" disabled value="<?php echo $this->data->row('username'); ?>">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="category" class="col-lg-4 control-label">Status</label>
+                        <div class="col-lg-8">
+                            <select name="status" class="form-control">
+                                <?php echo $this->dropdownOptions(array(
+                                    "pending"	=>	"Pending",
+                                    "published"	=>	"Published",
+                                ), $this->data->row('status'), 'published'); ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="message" class="col-lg-2 control-label">Message</label>
+                <div class="col-lg-10">
+                    <textarea name="message" class="wysiwyg"><?php echo $this->data->row('message'); ?></textarea>
+                </div>
+            </div>
+        </form>
+    </div><!--.col-lg-12-->
+</div><!--#content-->
+<script>
+    $('.save-post').click(function(){
+        $('form.trig_save').submit();
+    });
+    
+    
+    $('.category-list input').click(function(){
+        if ($(this).prop('checked') == true) {
+        
+        }
+    });
+    
+    // tinyMCE initialization
+    tinymce.init({
+        selector: ".wysiwyg",
+        toolbar: "undo redo | copy paste | bold italic underline strikethrough | alignleft aligncenter alignright | indent outdent | bullist numlist | link image hr",
+        menubar: false,
+        width: 783,
+        height: 240,
+        plugins: "link,image,lists",
+        statusbar: false,
+        content_css: "/css/tinymce.css"
+    });
+</script>

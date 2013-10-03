@@ -1,0 +1,84 @@
+<div class="row-fluid">
+	<div class="span12">
+		<div class="widget-box">
+			<div class="widget-title">
+				<span class="icon">
+					<i class="icon-align-justify"></i>
+				</span>
+				<h5>Blog form</h5>
+			</div>
+
+			<div class="widget-content nopadding">
+				<form action="/admin/data" method="POST" class="trig_save form-horizontal">
+				<input type="hidden" name="model" value="Blog">
+		  		<input type="hidden" name="id" value="<?php echo $this->params('id'); ?>">
+
+		  			<div class="control-group">
+								<label class="control-label">User Id</label>
+								<div class="controls">
+									<input class="large" name="user_id" value="<?php echo $this->data->row("user_id") ? $this->data->row("user_id") : ""; ?>" type="text">
+								</div>
+							</div>
+<div class="control-group">
+								<label class="control-label">Category Id</label>
+								<div class="controls">
+									<input class="large" name="category_id" value="<?php echo $this->data->row("category_id") ? $this->data->row("category_id") : ""; ?>" type="text">
+								</div>
+							</div>
+<div class="control-group">
+								<label class="control-label">Status</label>
+								<div class="controls">
+									<input class="large" name="status" value="<?php echo $this->data->row("status") ? $this->data->row("status") : ""; ?>" type="text">
+								</div>
+							</div>
+<div class="control-group">
+								<label class="control-label">Subject</label>
+								<div class="controls">
+									<input class="large" name="subject" value="<?php echo $this->data->row("subject") ? $this->data->row("subject") : ""; ?>" type="text">
+								</div>
+							</div>
+<div class="control-group">
+								<label class="control-label">Message</label>
+								<div class="controls">
+									<input class="large" name="message" value="<?php echo $this->data->row("message") ? $this->data->row("message") : ""; ?>" type="text">
+								</div>
+							</div>
+
+
+					<div class="form-actions">
+						<input type="submit" class="btn btn-success primary" value="Save changes">&nbsp;<button type="reset" class="btn back">Cancel</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+
+
+$(document).ready(function(){
+
+	$('select[name=type]').change(function(){
+
+		if($(this).val() == "Add"){
+
+			$('#type_new_box').show();
+			$('select[name=type]').attr('name', 'type_old');
+			$('#type_new').attr('name', 'type');
+
+		}else{
+
+			$('#type_new_box').hide();
+			$('select[name=type]').attr('name', 'type');
+			$('#type_new').attr('name', 'type_old');
+
+			$.getJSON("/api/categories", {type: $(this).val()}, function(res){
+				$('select[name=parent_id]').html(res.result.html);
+				console.log(res);
+			});
+		}
+	});
+});
+</script>

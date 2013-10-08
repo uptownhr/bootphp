@@ -53,18 +53,23 @@ class Jien_Model extends Zend_Db_Table_Abstract {
                 $data[$field] = Zend_Json::encode($value);
             }
         }
-    
+
         if($where == ''){
           $where = $this->_getWhere();
         }
-    
+
         // if editing, just update
         if($where != ''){
             $res = $this->update($data, $where);
             $id = $res;
         }else if(!empty($data[$primary])){
             $res = $this->update($data, "{$primary} = {$data[$primary]}");
-            $id = $res;
+	    if($res){
+		$id = $data[$primary]; //returning id
+	    }else{
+		$id = false; //save failed
+	    }
+
         }else{
             // create a new record
             $id = $this->insert($data);
@@ -134,7 +139,7 @@ class Jien_Model extends Zend_Db_Table_Abstract {
     }
     return $where;
   }
-  
+
     protected function _getQuery(){
         $where = '';
         $select = array();
@@ -296,7 +301,7 @@ class Jien_Model extends Zend_Db_Table_Abstract {
     public function andWhere($where, $bind = array()){
     if(!empty($bind)){
       $where = $this->db->quoteInto($where, $bind);
-    }     
+    }
         $this->_query['where']['and'][] = '('.$where.')';
         return $this;
     }
@@ -304,7 +309,7 @@ class Jien_Model extends Zend_Db_Table_Abstract {
     public function orWhere($where, $bind = array()){
     if(!empty($bind)){
       $where = $this->db->quoteInto($where, $bind);
-    }     
+    }
         $this->_query['where']['or'][] = '('.$where.')';
         return $this;
     }
